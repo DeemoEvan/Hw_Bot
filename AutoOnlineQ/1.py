@@ -7,3 +7,5 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 import time
+driver = webdriver.Firefox()
+driver.get("https://dxjh.teamslite.com.tw/student/dashboard.html?user=A14dxjh_STUDENT_000242")
