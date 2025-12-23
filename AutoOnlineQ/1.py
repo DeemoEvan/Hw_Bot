@@ -66,19 +66,5 @@ actions = ActionChains(driver)
 actions.click(lesseon_page_btn)
 actions.perform()
 driver.get('https://dxjh.teamslite.com.tw/student/selfass.html?course=A14dxjh_COURSE_000898&student=68c90d05cfeb75000a6e1267')
-time.sleep(20)
 
-# def smart_click(xpath):
-#     # 等待元素出現在 DOM 中
-#     element = WebDriverWait(driver, 10).until(
-#         EC.presence_of_element_located((By.XPATH, xpath))
-#     )
-#     # 使用 JavaScript 強制點擊
-#     driver.execute_script("arguments[0].click();", element)
-#     time.sleep(1) # 給一點緩衝時間讓選單展開
 
-#     # A. 點擊左側「909英語」大項 (根據截圖 ID 是 A14dxjh_COURSE_000898)
-#     # 我們改用包含文字的找法，比較不會出錯
-# print("正在開啟 909英語 選單...")
-# smart_click("//span[contains(text(), '909英語')]")
-# time.sleep(30)
