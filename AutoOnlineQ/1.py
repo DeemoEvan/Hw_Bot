@@ -8,7 +8,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 import time
 import os
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
 
 
 #XPath
@@ -17,7 +17,7 @@ login_page_pwd_xpath = '//*[@id="password"]/input'
 login_page_btn_xpath = '//*[@id="app"]/div/div[2]/div/div/div/form/button'
 
 #file path
-login_info_path = r""
+login_info_path = r"G:\My Drive\SQL1024\TR and M\Hw_Bot\AutoOnlineQ\login.txt"
 
 with open(login_info_path, 'r', encoding='utf-8') as f:
     # 讀取所有行並去掉每行末尾的換行符號 \n
@@ -59,10 +59,10 @@ actions.perform()
 
 #open correct page
 driver.get("https://dxjh.teamslite.com.tw/student/course.html")
-WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.CLASS_NAME,'909英文'))
+WebDriverWait(driver, 30).until(
+    EC.presence_of_element_located((By.XPATH,'//*[@id="A14dxjh_COURSE_000898"]/a/span[1]'))
 )
-subject_btn = driver.find_element(By.CLASS_NAME,'909英文')
+subject_btn = driver.find_element(By.XPATH,'//*[@id="A14dxjh_COURSE_000898"]/a/span[1]')
 actions = ActionChains(driver)
 actions.click(subject_btn)
 actions.perform()
