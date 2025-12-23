@@ -42,16 +42,16 @@ def login(driver):
             print("嘗試尋找『在瀏覽器中繼續』按鈕...")
             # 透過尋找包含該文字的 span，並定位到它的父層 button
             continue_btn_xpath = "//button[.//span[contains(text(), '在瀏覽器中繼續')]]"
-            
+
             # 等待按鈕出現並點擊
             continue_btn = WebDriverWait(driver, 15).until(
                 EC.element_to_be_clickable((By.XPATH, continue_btn_xpath))
             )
-            
+
             # 使用 ActionChains 確保點擊有效
             actions = ActionChains(driver)
             actions.move_to_element(continue_btn).click().perform()
-            
+
             print("已成功點擊『在瀏覽器中繼續』")
             time.sleep(5)  # 等待頁面跳轉到帳密輸入框
         except Exception as e:
@@ -102,11 +102,11 @@ def wait_until_next_hour():
     now = datetime.now()
     next_hour = (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
     wait_seconds = int((next_hour - now).total_seconds())
-    
+
     os.system('cls' if os.name == 'nt' else 'clear')
     print(f"現在時間: {now.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"預計在 {next_hour.strftime('%Y-%m-%d %H:%M:%S')} 開始執行")
-    
+
     for _ in tqdm(range(wait_seconds), desc="等待下個整點", unit="秒", leave=False, dynamic_ncols=True):
         time.sleep(1)
     time.sleep(random.randrange(5, 15))
@@ -119,16 +119,16 @@ while True:
     # 關鍵：設定 Firefox Profile
     options.add_argument("-profile")
     options.add_argument(PROFILE_PATH)
-    
+
     # 建議：隱藏自動化偵測特徵 (選配)
     options.set_preference("dom.webdriver.enabled", False)
     options.set_preference('useAutomationExtension', False)
 
     driver = webdriver.Firefox(service=Service(DRIVER_PATH), options=options)
-    
+
     try:
         driver.get(TARGET_URL)
-        
+
         # 1. 偵測登入狀態：等待對話框出現
         # Discord 的訊息輸入框通常帶有 role='textbox'
         print("正在檢查登入狀態...")
@@ -149,19 +149,19 @@ while True:
         # 2. 執行簽到動作
         time.sleep(random.uniform(2, 5))
         input_box.click()
-        
-        # 模擬打字 /hourly 
+
+        # 模擬打字 /hourly
         # 注意：Discord 的斜線指令通常需要打完後等一下選單彈出
         human_type(input_box, "/hourly ")
         time.sleep(2)
         input_box.send_keys(Keys.ENTER) # 送出指令
-        
+
         print(f"已於 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 完成簽到")
         time.sleep(5) # 確保訊息送出
-        
+
     except Exception as e:
         print(f"發生異常: {e}")
     finally:
         driver.quit()
-        
+
     wait_until_next_hour()
