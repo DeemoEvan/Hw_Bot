@@ -60,11 +60,10 @@ actions.perform()
 
 #open correct page
 time.sleep(1)
-
-lesseon_page_btn = driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/ul/li[2]/a/span')
-actions = ActionChains(driver)
-actions.click(lesseon_page_btn)
-actions.perform()
 driver.get('https://dxjh.teamslite.com.tw/student/selfass.html?course=A14dxjh_COURSE_000898&student=68c90d05cfeb75000a6e1267')
-
-
+time.sleep(1)
+driver.find_element(By.XPATH, '//*[@id="eHanlin_J114_JEN_JH_1_C_2-1"]/td[1]/div/span/input').click()
+time.sleep(2)
+# 執行 JS 語法：滾動到 document.body.scrollHeight (頁面總高度)
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+time.sleep(1)
