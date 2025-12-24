@@ -20,6 +20,11 @@ login_page_btn_xpath = '//*[@id="app"]/div/div[2]/div/div/div/form/button'
 #file path
 login_info_path = r"G:\My Drive\SQL1024\TR and M\Hw_Bot\AutoOnlineQ\login.txt"
 
+# 題目ID(5題為1PART 1PART有5題)
+part_id = 1
+inpart_id = 2
+
+
 with open(login_info_path, 'r', encoding='utf-8') as f:
     # 讀取所有行並去掉每行末尾的換行符號 \n
     lines = [line.strip() for line in f.readlines()]
@@ -64,7 +69,32 @@ time.sleep(1)
 driver.get('https://dxjh.teamslite.com.tw/student/selfass.html?course=A14dxjh_COURSE_000898&student=68c90d05cfeb75000a6e1267')
 time.sleep(1)
 driver.find_element(By.XPATH, '//*[@id="eHanlin_J114_JEN_JH_1_C_2-1"]/td[1]/div/span/input').click()
-time.sleep(2)
+time.sleep(1.5)
 # 執行 JS 語法：滾動到 document.body.scrollHeight (頁面總高度)
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(1)
+driver.find_element(By.XPATH, '//*[@id="unitGroup"]/div/button').click()
+time.sleep(0.3)
+driver.find_element(By.XPATH, '//*[@id="normal_options"]/div/div/div[2]/div[2]/div/label[5]').click()
+time.sleep(0.5)
+driver.find_element(By.XPATH, '//*[@id="normal_options"]/div/div/div[3]/button[2]').click()
+time.sleep(0.3)
+
+#答題+下一題
+
+def send_paper():
+    driver.find_element(By.XPATH, '//*[@id="exam_height"]/div[5]/div/div/div[1]/div[2]/button').click()
+
+while part_id <= 8:
+    while inpart_id <=5:
+        driver.find_element(By.XPATH, f'//*[@id="questionsNumberBar"]/div[{part_id}]/button[{inpart_id}]').click()
+        time.sleep(0.1)
+        inpart_id += 1
+        print(inpart_id)
+    part_id += 1
+    print(part_id)
+    driver.find_element(By.XPATH, f'//*[@id="questionsNumberBar"]/div[{part_id}]/button[1]').click()
+    inpart_id = 2
+
+
+
