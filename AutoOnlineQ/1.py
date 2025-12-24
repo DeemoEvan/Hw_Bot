@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 import time
 import os
+import google.generativeai as genai
 driver = webdriver.Chrome()
 
 
