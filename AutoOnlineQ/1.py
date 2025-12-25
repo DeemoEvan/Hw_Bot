@@ -17,7 +17,7 @@ login_page_pwd_xpath = '//*[@id="password"]/input'
 login_page_btn_xpath = '//*[@id="app"]/div/div[2]/div/div/div/form/button'
 
 #file path
-login_info_path = r"G:\My Drive\SQL1024\TR and M\Hw_Bot\AutoOnlineQ\login.txt"
+login_info_path = r".\login.txt"
 
 with open(login_info_path, 'r', encoding='utf-8') as f:
     # 讀取所有行並去掉每行末尾的換行符號 \n
