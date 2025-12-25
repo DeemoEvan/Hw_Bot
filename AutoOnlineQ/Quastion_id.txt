@@ -1,0 +1,4 @@
+//*[@id="questionsNumberBar"]/div[1]/button[1]
+//*[@id="questionsNumberBar"]/div[1]/button[2]
+//*[@id="questionsNumberBar"]/div[2]/button[1]
+//*[@id="questionsNumberBar"]/div[2]/button[2]
